@@ -5,35 +5,21 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as dotenv from 'dotenv';
 
+dotenv.config();
 @Module({
   imports: [
-    // ClientsModule.register([
-    //   {
-    //     name: 'REGISTRATION_SERVICE',
-    //     transport: Transport.KAFKA,
-    //     options: {
-    //       client: {
-    //         clientId: 'registration',
-    //         brokers: ['localhost:9092'],
-    //       },
-    //       consumer: {
-    //         groupId: 'REGISTRATION_SERVICE_GROUP',
-    //       },
-    //     },
-    //   },
-    // ]),
     MailerModule.forRoot({
       transport: {
         host: process.env.host,
-        port: 587,
-        secure: false,
+        port: 465,
+        secure: true,
         auth: {
           user: process.env.user,
           pass: process.env.pass,
         },
       },
       defaults: {
-        from: '"No Reply" <',
+        from: 'kj@rapidinnovation.dev',
       },
     }),
   ],

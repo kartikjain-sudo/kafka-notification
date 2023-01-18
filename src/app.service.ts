@@ -10,18 +10,20 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async sendMail(data: any): Promise<boolean> {
+  async sendMail(data: any) {
     const { email } = data;
     
     const mailOptions = {
-      email,
-      from: 'kj@rapidinnovation.dev',
+      to: email,
       subject: 'Welcome mail',
       text: 'Welcome to the GHC',
   };
-  
-  await this.mailerService.sendMail(mailOptions);
 
-    return true;
+  console.log({mailOptions});
+  
+  
+  const mailSer = await this.mailerService.sendMail(mailOptions);
+
+    // return mailSer;
   }
 }
